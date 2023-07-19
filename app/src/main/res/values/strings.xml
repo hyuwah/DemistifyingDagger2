@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Demistifying Dagger2</string>
+    <string name="title_crypto">Crypto</string>
+    <string name="title_stocks">Stocks</string>
+</resources>

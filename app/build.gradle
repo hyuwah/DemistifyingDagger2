@@ -1,0 +1,59 @@
+plugins {
+    alias libs.plugins.android.application
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.kotlin.kapt
+}
+
+android {
+    namespace 'dev.hyuwah.demistifyingdagger2'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "dev.hyuwah.demistifyingdagger2"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    dynamicFeatures = [':crypto', ':stocks']
+}
+
+dependencies {
+
+    coreLibraryDesugaring libs.android.desugarJdkLibs
+    implementation project(path: ":core")
+    implementation project(path: ":flight")
+    implementation project(path: ":hotel")
+    implementation project(path: ":hotel-api")
+    implementation project(path: ":payment")
+    implementation libs.androidx.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
+    implementation libs.dagger
+    kapt libs.dagger.compiler
+    implementation libs.viewbinding.delegate
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
